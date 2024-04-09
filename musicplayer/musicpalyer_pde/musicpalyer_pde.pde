@@ -1,20 +1,13 @@
 //Global Variables
 int appWidth, appHeight;
-int backgroundX, backgroundY, backWidth, backgroundHeigh;
-float
+float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
+float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float coverX, coverY, coverWidth, coverHeight;
 float playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight;
 //
 void setup() {
-  println("HelloWorld");
-  //concatenation & Inspecting Variables With Character Escapes
-println("width: "+width+"\theight: "+height+"\tdisplay Width: "+displayWidth+"\tdisplay Height: "+displayHeight);
-//NULL: all values are NULL until size(), arithemtic errors
-println( "Example Formula: add 1 to the width", width+1 ); 
-//
-//Display: CANVAS& Full Screen
-size(400, 500);
-//fullScreen();
+//size(400, 500); //width, height
+//fullScreen(); //displayWidth, displayHeight
 appWidth = displayWidth;
 appHeight = displayHeight;
 //println(appWidth, appHeight);
@@ -24,25 +17,30 @@ appHeight = displayHeight;
 //
 // populate
 backgroundX = appWidth*0;
-backgroundY = appheight*0;
+backgroundY = appHeight*0;
 backgroundWidth = appWidth;
 backgroundHeight = appHeight;
-coverX = appWidth*0;
-coverY =  appHeight*1/7; 
-coverWidth = appWidth;
-coverHeight =  appHeight*4/7;
+coverX = appWidth*18/100;
+coverY =  appHeight*15/100; 
+coverWidth = appWidth*64/100;
+coverHeight =  appHeight*6/16;
 playbuttonX = appWidth*2.5/5;
 playbuttonY = appHeight*5/7;
 playbuttonWidth =  appWidth*0.5/5;
 playbuttonHeight = appHeight*8/10;
+quitButtonX = appWidth*90/100;
+quitButtonY = appHeight*91/100;
+quitButtonWidth =  appWidth*9/100;
+quitButtonHeight = appHeight*8/100;
 //Layout DIVs
-rect(X, Y, Width, Height);
-rect(backgroundX, backgroundY, backWidth, backgroundHeight);
+//rect(X, Y; Width, Height);
+rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
 int centerX = appWidth*1/2;
-int centerY = appHeight*1/2
-rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
-rect(coverX, coverY, coverWidth, coverHeight)
+int centerY = appHeight*1/2;
+//rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
+rect(coverX, coverY, coverWidth, coverHeight);
 rect(playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight);
+rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
 /*
 rect(X, Y, Width, Height);
 rect(X, Y, Width, Height);

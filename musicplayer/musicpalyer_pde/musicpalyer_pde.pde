@@ -1,18 +1,18 @@
 //Global Variables
 int appWidth, appHeight;
 float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
-float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight;
+float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight;
 //
-color backgroundcolour,darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
+color backgroundColour,darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
 color foregroundColour;
-color white=255, yellow=#FFFF00; //Hexidecimal, see Toll
-Boolean WhiteMode=false;
+color white=255, yellow=#FFFF00, black=0, purple=#FF00FF; //Hexidecimal, see Tools / Colour Selector
+Boolean whiteMode=false;
 //
 void setup() {
   //size(400, 500); //width, height
-  //fullScreen(); //displayWidth, displayHeight
+  fullScreen(); //displayWidth, displayHeight
   appWidth = displayWidth;
   appHeight = displayHeight;
  //Landscape is HARDCODED
@@ -31,7 +31,7 @@ void setup() {
   playbuttonX = appWidth*2.5/5;
   playbuttonY = appHeight*5/7;
   playbuttonWidth =  appWidth*0.5/5;
-  playbuttonHeight = appHeight*8/10;
+  playbuttonHeight = appHeight*1/10;
   quitButtonX = appWidth*90/100;
   quitButtonY = appHeight*91/100;
   quitButtonWidth =  appWidth*9/100;
@@ -45,22 +45,22 @@ void setup() {
   rect(albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight);
   rect(playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-  */ rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height);
-   */
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   rect(X, Y, width, height);
+   
    //
    //Variable Population
   //if ( hour()>=9 && hour()<=17 ) backgroundColour = whiteBackground;
-  //if ( hour()<9 && hour()>17 ) backgroundColour = darkBackground;
+  //if ( hour()<9 && hour()>17 ) backgroundColour = darkBackground; 
   if ( whiteMode==true && hour()>=9 && hour()<=17 ) {
     backgroundColour = whiteBackground;
     foregroundColour = #FFFFFF;
@@ -73,19 +73,36 @@ void setup() {
 }//End setup
 //
 void draw() {
-  background(2); //grayscale
-  //rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
+  background(backgroundColour); 
+  fill(foregroundColour);
+  //
+  //Quit button
+ // fill(purple);
+  //if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) fill(yellow);
+   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
+   fill(purple);
+  if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight)
+{fill(yellow);
+rect(quitButtonX+quitButtonWidth*1/7, quitButtonY, quitButtonWidth*5/7, quitButtonHeight );
+fill(foregroundColour);
+} else {
+fill(purple);
+}
+  fill(foregroundColour);
+  println(mouseX, mouseY);
+  //
 } //End draw
 //
 void keypressed() { //Listener
  if (key=='Q' || key=='q') exit();
  if (key==CODED && keyCode==UP ) exit();
+ if (key=='W'|| key=='w');
 } //End keypressed
 //
 void mousepressed() { //Listener
 //QUIT
 //;quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight
-if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight&&)
+if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight )
 {
   exit();
 }

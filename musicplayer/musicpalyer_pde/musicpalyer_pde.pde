@@ -5,7 +5,9 @@ float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight;
 float playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight;
 //
-color backgroundcolour,darkbackground, whitebackground;
+color backgroundcolour,darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
+color foregroundColour;
+color white=255, yellow=#FFFF00; //Hexidecimal, see Toll
 Boolean WhiteMode=false;
 //
 void setup() {
@@ -23,9 +25,9 @@ void setup() {
   backgroundWidth = appWidth;
   backgroundHeight = appHeight;
   albumCoverX = appWidth*18/100;
-  coverY =  appHeight*15/100;
-  coverWidth = appWidth*64/100;
-  coverHeight =  appHeight*6/16;
+  albumCoverY =  appHeight*15/100;
+  albumCoverWidth = appWidth*64/100;
+ albumCoverHeight =  appHeight*6/16;
   playbuttonX = appWidth*2.5/5;
   playbuttonY = appHeight*5/7;
   playbuttonWidth =  appWidth*0.5/5;
@@ -40,11 +42,10 @@ void setup() {
   int centerX = appWidth*1/2;
   int centerY = appHeight*1/2;
   //rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
-  rect(coverX, coverY, coverWidth, coverHeight);
+  rect(albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight);
   rect(playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-  /*
-rect(X, Y, Width, Height);
+  */ rect(X, Y, Width, Height);
    rect(X, Y, Width, Height);
    rect(X, Y, Width, Height);
    rect(X, Y, Width, Height);
@@ -54,18 +55,19 @@ rect(X, Y, Width, Height);
    rect(X, Y, Width, Height);
    rect(X, Y, Width, Height);
    rect(X, Y, Width, Height);
-   rect(X, Y, Width, Height)
+   rect(X, Y, Width, Height);
    */
-  //var population
-  darkbackground = 0; //Gray Scale, smaller than COLOR
-  whitebackground = 255; // Gray Scale, smaller than COLOR
-  WhiteMode = true;
-  //if ( hour()>=9 && hour()<=17 ) backgroundcolour = whitebackground;
-  //if ( hour()<=9 && hour()>=17 ) backgroundcolour = darkbackground;
-  if (WhiteMode==true&&  hour()>=9 && hour()<=17 ) {
-    backgroundcolour = whitebackground;
+   //
+   //Variable Population
+  //if ( hour()>=9 && hour()<=17 ) backgroundColour = whiteBackground;
+  //if ( hour()<9 && hour()>17 ) backgroundColour = darkBackground;
+  if ( whiteMode==true && hour()>=9 && hour()<=17 ) {
+    backgroundColour = whiteBackground;
+    foregroundColour = #FFFFFF;
   } else {
-    backgroundcolour = darkbackground;
+    backgroundColour = darkBackground;
+    foregroundColour = yellow; //Note: if(hour()<9&&hour()>17) 
+    if ( hour()>=9 && hour()<=17 ) foregroundColour = white;
   }
   //
 }//End setup
@@ -75,8 +77,16 @@ void draw() {
   //rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
 } //End draw
 //
-void keypressed() {
+void keypressed() { //Listener
+ if (key=='Q' || key=='q') exit();
+ if (key==CODED && keyCode==UP ) exit();
 } //End keypressed
 //
-void mousepressed() {
+void mousepressed() { //Listener
+//QUIT
+//;quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight
+if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight&&)
+{
+  exit();
+}
 } //End mousepressed

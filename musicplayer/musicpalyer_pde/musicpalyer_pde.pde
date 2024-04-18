@@ -4,6 +4,9 @@ float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 float albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight;
+float forwardButtonX, forwardButtonY, forwardButtonWidth, forwardButtonHeight;
+float backwardButtonX, backwardButtonY, backwardButtonWidth, backwardButtonHeight;
+float pauseButtonX, pauseButtonY, pauseButtonWidth, pauseButtonHeight;
 //
 color backgroundColour,darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
 color foregroundColour;
@@ -36,7 +39,10 @@ void setup() {
   quitButtonY = appHeight*91/100;
   quitButtonWidth =  appWidth*9/100;
   quitButtonHeight = appHeight*8/100;
-  //Layout DIVs
+  forwardButtonX = appWidth
+  forwardButtonY = appHeight
+  forwardButtonWidth = appWidth
+  forwardButtonHeight = appHeight
   //rect(X, Y; Width, Height);
   rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
   int centerX = appWidth*1/2;
@@ -45,17 +51,17 @@ void setup() {
   rect(albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight);
   rect(playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
-   rect(X, Y, width, height);
+  rect(forwardButtonX, forwardButtonY, forwardButtonWidth, forwardButtonHeight);
+  rect(backwardButtonX, backwardButtonY, backwardButtonWidth, backwardButtonHeight);
+  rect(pauseButtonX, pauseButtonY, pauseButtonWidth, pauseButtonHeight);
+  rect(X, Y, width, height);
+  rect(X, Y, width, height);
+  rect(X, Y, width, height);
+  rect(X, Y, width, height);
+  rect(X, Y, width, height);
+  rect(X, Y, width, height);
+  rect(X, Y, width, height);
+  rect(X, Y, width, height);
    
    //
    //Variable Population

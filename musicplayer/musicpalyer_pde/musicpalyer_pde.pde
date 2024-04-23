@@ -1,4 +1,20 @@
+/* Documentation
+ Library: use Sketch / Import Library / Add Library / Minim
+ Suporting Website: https://code.compartmental.net/minim/
+ - https://code.compartmental.net/minim/audioplayer_method_loop.html
+ */
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 //Global Variables
+Minim minim; //creates object to access all functions
+AudioPlayer soundEffects1;
+AudioPlayer playList1; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
+//
 int appWidth, appHeight;
 float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 float albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight;
@@ -7,6 +23,9 @@ float playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight;
 float forwardButtonX, forwardButtonY, forwardButtonWidth, forwardButtonHeight;
 float backwardButtonX, backwardButtonY, backwardButtonWidth, backwardButtonHeight;
 float pauseButtonX, pauseButtonY, pauseButtonWidth, pauseButtonHeight;
+int size;
+PFont generalFont;
+String quit="QUIT";
 //
 color backgroundColour,darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
 color foregroundColour;
@@ -21,6 +40,24 @@ void setup() {
  //Landscape is HARDCODED
   String dispalyInstructions = ( appWidth >= appHeight ) ?"Good TO Go" :"turn your phone";
   println(dispalyInstructions);
+  //
+   minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
+   string extension = ".mp3";
+   string quitButtonSound = "The_Simplest_String.mp3";
+   string pathwaySoundEffects = " ../SoundFile/SoundEffect/"; //Relative path
+   print( pathwaySoundEffects+quitButtonSound+extension );
+   string path = sketchPath(pathwaySoundEffects + quitButtonSound + extension ); 
+   //prit
+  //soundEfffects1 = minim.loadFile(path);
+  //playList1 = minim.loadFile( path );
+  //
+   //Fonts from OS (Operating System)
+  String[] fontList = PFont.list(); //To list all fonts available on OS
+  printArray(fontList); //For listing all possible fonts to choose from, then createFont
+  size = ( appWidth > appHeight ) ? appHeight : appWidth ; // Font size starts with smaller dimension
+  generalFont = createFont("Harrington", size);
+  //bottomFont = createFont("", size); //Note: more than one font allowed
+  // Tools / Create Font / Find Font / Use size field / Do not press "OK", known bug
   //
   // populate
   backgroundX = appWidth*0;
@@ -43,13 +80,14 @@ void setup() {
   forwardButtonY = appHeight
   forwardButtonWidth = appWidth
   forwardButtonHeight = appHeight
+  //Layout DIVs
   //rect(X, Y; Width, Height);
   rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
   int centerX = appWidth*1/2;
   int centerY = appHeight*1/2;
   //rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
-  rect(albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight);
-  rect(playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight);
+ // rect(albumCoverX, albumCoverY,albumCoverWidth, albumCoverHeight);
+  //rect(playbuttonX, playbuttonY, playbuttonWidth, playbuttonHeight);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
   rect(forwardButtonX, forwardButtonY, forwardButtonWidth, forwardButtonHeight);
   rect(backwardButtonX, backwardButtonY, backwardButtonWidth, backwardButtonHeight);
@@ -62,7 +100,6 @@ void setup() {
   rect(X, Y, width, height);
   rect(X, Y, width, height);
   rect(X, Y, width, height);
-   
    //
    //Variable Population
   //if ( hour()>=9 && hour()<=17 ) backgroundColour = whiteBackground;

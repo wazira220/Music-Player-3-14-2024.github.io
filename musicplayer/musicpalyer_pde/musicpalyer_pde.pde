@@ -26,6 +26,7 @@ float pauseButtonX, pauseButtonY, pauseButtonWidth, pauseButtonHeight;
 int size;
 PFont generalFont;
 String quit="QUIT";
+String play="PLAY"; 
 //
 color backgroundColour,darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
 color foregroundColour;
@@ -41,19 +42,19 @@ void setup() {
   String dispalyInstructions = ( appWidth >= appHeight ) ?"Good TO Go" :"turn your phone";
   println(dispalyInstructions);
   //
-   minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
-   string extension = ".mp3";
-   string quitButtonSound = "The_Simplest_String.mp3";
-   string pathwaySoundEffects = " ../SoundFile/SoundEffect/"; //Relative path
-   print( pathwaySoundEffects+quitButtonSound+extension );
-   string path = sketchPath(pathwaySoundEffects + quitButtonSound + extension ); 
-   //prit
-  //soundEfffects1 = minim.loadFile(path);
+  minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
+  String extension = ".mp3";
+  String quitButtonSound = "CarDoorClosing";
+  String pathwaySoundEffects = "../Audio/SoundEffect/"; //Relative Path
+  //println ( pathwaySoundEffects+quitButtonSound+extension );
+  String path = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
+  //println ( path );
+  soundEffects1 = minim.loadFile( path );
   //playList1 = minim.loadFile( path );
   //
    //Fonts from OS (Operating System)
-  String[] fontList = PFont.list(); //To list all fonts available on OS
-  printArray(fontList); //For listing all possible fonts to choose from, then createFont
+  //String[] fontList = PFont.list(); //To list all fonts available on OS
+  //printArray(fontList); //For listing all possible fonts to choose from, then createFont
   size = ( appWidth > appHeight ) ? appHeight : appWidth ; // Font size starts with smaller dimension
   generalFont = createFont("Harrington", size);
   //bottomFont = createFont("", size); //Note: more than one font allowed
@@ -76,10 +77,18 @@ void setup() {
   quitButtonY = appHeight*91/100;
   quitButtonWidth =  appWidth*9/100;
   quitButtonHeight = appHeight*8/100;
-  forwardButtonX = appWidth
-  forwardButtonY = appHeight
-  forwardButtonWidth = appWidth
-  forwardButtonHeight = appHeight
+  forwardButtonX = appWidth*18/100;
+  forwardButtonY = appHeight*15/100;
+  forwardButtonWidth = appWidth*18/100;
+  forwardButtonHeight = appHeight*15/100;
+   backwardButtonX = appWidth*18/100;
+   backwardButtonY = appHeight*15/100;
+   backwardButtonWidth = appWidth*18/100;
+   backwardButtonHeight = appHeight*15/100;
+   pauseButtonX = appWidth*18/100;
+   pauseButtonY = appHeight*15/100;
+   pauseButtonWidth = appWidth*18/100;
+   pauseButtonHeight = appHeight*15/100;
   //Layout DIVs
   //rect(X, Y; Width, Height);
   rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
@@ -100,7 +109,6 @@ void setup() {
   rect(X, Y, width, height);
   rect(X, Y, width, height);
   rect(X, Y, width, height);
-   //
    //Variable Population
   //if ( hour()>=9 && hour()<=17 ) backgroundColour = whiteBackground;
   //if ( hour()<9 && hour()>17 ) backgroundColour = darkBackground; 
@@ -122,8 +130,8 @@ void draw() {
   //Quit button
  // fill(purple);
   //if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) fill(yellow);
-   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
    fill(purple);
+  rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
   if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight)
 {fill(yellow);
 rect(quitButtonX+quitButtonWidth*1/7, quitButtonY, quitButtonWidth*5/7, quitButtonHeight );
@@ -131,17 +139,60 @@ fill(foregroundColour);
 } else {
 fill(purple);
 }
-  fill(foregroundColour);
-  println(mouseX, mouseY);
+  fill(foregroundColour); //Resetting the Defaults
+  //Quit, Text
+  fill(foregroundColour); //Ink
+  textAlign( CENTER, CENTER ); //Align X&Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  size = appHeight*1/23; // Var based on ratio of display
+  textFont(generalFont, size);
+  text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7); //Inside rect() above
+  fill(foregroundColour); //Resetting the Defaults
+  //
+
+  //println(mouseX, mouseY);
+
+  //
+   //Play Button
+   fill(purple)
+    //if ( mouseX>playButtonX && mouseX<playButtonX+playButton && mouseY>playButtonY && mouseY<playButtonY+playButtonHeight ) fill(yellow);
+     fill(purple);
+  rect(playButtonX,playButtonY, playButtonWidth, playButtonHeight);
+  if ( mouseX>playButtonX && mouseX<playButtonX+playButtonWidth && mouseY>playButtonY && mouseY<playButtonY+playButtonHeight)
+{fill(yellow);
+rect(playButtonX+playButtonWidth*1/7,playButtonY, playButtonWidth*5/7, playButtonHeight );
+fill(foregroundColour);
+} else {
+fill(purple);
+}
+  fill(foregroundColour); //Resetting the Defaults
+  //Quit, Text
+  fill(foregroundColour); //Ink
+  textAlign( CENTER, CENTER ); //Align X&Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  size = appHeight*1/23; // Var based on ratio of display
+  textFont(generalFont, size);
+  text(play, playtButtonX+playButtonWidth*1/7, playButtonY+playButtonHeight*1/7, playButtonWidth*5/7, playButtonHeight*5/7); //Inside rect() above
+  fill(foregroundColour); //Resetting the Defaults
   //
 } //End draw
-//
 void keypressed() { //Listener
- if (key=='Q' || key=='q') exit();
- if (key==CODED && keyCode==UP ) exit();
- if (key=='W'|| key=='w');
-} //End keypressed
-//
+ if (key=='Q' || key=='q') 
+ {
+   soundEffects1.loop(0);
+ delay(2650); //Parameter: milliseconds
+    exit();
+  }
+  if (key==CODED && keyCode==ESC) //Hardcoded QUIT, no sound available
+  {
+    soundEffects1.loop(0);
+    delay(2650); //Parameter: milliseconds
+    exit();
+  }
+  if (key=='W' || key=='w') ;
+  
+  //soundEffects1.loop(0);  
+}//End keypressed
 void mousepressed() { //Listener
 //QUIT
 //;quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight
@@ -150,3 +201,6 @@ if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButt
   exit();
 }
 } //End mousepressed
+//
+
+//End MAIN Program

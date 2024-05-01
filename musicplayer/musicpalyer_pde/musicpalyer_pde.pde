@@ -2,14 +2,16 @@
  Library: use Sketch / Import Library / Add Library / Minim
  Suporting Website: https://code.compartmental.net/minim/
  - https://code.compartmental.net/minim/audioplayer_method_loop.html
+ - loop(0) seems best for sound effects
  */
+ //Library
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
-
+//
 //Global Variables
 Minim minim; //creates object to access all functions
 AudioPlayer soundEffects1;

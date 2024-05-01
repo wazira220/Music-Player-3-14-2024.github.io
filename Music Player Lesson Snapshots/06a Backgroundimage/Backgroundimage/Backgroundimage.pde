@@ -15,7 +15,10 @@ void setup() {
  backgroundImagHeight = appHeight-1;
  //
  String backgroundImageName =  "";
- String extensin
+ String extension = 
+ String pathway = 
+ String landscape_Square =
+ String 
  backgroundImage = loadImage("");
  //DIV
  rect(backgroundImagX,  backgroundImagY,  backgroundImagWidth,  backgroundImagHeight);

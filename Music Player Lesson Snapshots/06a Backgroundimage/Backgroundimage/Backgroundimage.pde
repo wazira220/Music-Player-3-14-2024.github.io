@@ -18,7 +18,7 @@ void setup() {
  //
  String Far Away Thunder =  "1.-Jorg-Karg-912x1200";
  String extension = ".jpg";
- String pathway =  "../../../images/";"" 
+ String pathway =  "../../../images/"; 
  String landscape_Square =
  String 
  backgroundImage = loadImage("");

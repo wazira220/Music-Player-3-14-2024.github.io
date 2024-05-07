@@ -50,7 +50,8 @@ void setup() {
   String pathwaySoundEffects = "../SoundFile/SoundEffect/"; //Relative Path
   //println ( pathwaySoundEffects+quitButtonSound+extension );
   String path = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
-  //println ( path );
+  String bachgroundFileName = "backgroundimage/"; 
+ //println ( path );
   soundEffects1 = minim.loadFile( path );
   //playList1 = minim.loadFile( path );
   //

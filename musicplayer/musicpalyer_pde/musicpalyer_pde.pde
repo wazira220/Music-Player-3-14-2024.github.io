@@ -14,22 +14,24 @@ import ddf.minim.ugens.*;
 //
 //Global Variables
 Minim minim; //creates object to access all functions
-AudioPlayer soundEffects1;
 AudioPlayer playList1; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
+AudioPlayer soundEffects1; //"Play List" for Sound Effects
 //
 int appWidth, appHeight;
+//
 int size;
 PFont generalFont;
 String quit="QUIT";
 //
-color backgroundColour, darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
-color foregroundColour;
 color white=255, yellow=#FFFF00, black=0, purple=#FF00FF; //Hexidecimal, see Tools / Colour Selector
 Boolean dayMode=false; //App starts in Night Mode, set to day in setup()
 Boolean lightMode=false; //Dark mode starts App, null possible if USER Preferences made
 //
+color backgroundColour, darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
+color foregroundColour;
+//
 String pathDarkBackgroundImage, pathLightBackgroundImage;
-PImage summerMarketPlaceBackground, darthvader, obiwan, bike;
+PImage space, sunrise, ukraine
 PImage backgroundImage;
 PImage albumCoverImage;
 float albumCoverRIGHT, albumCoverCENTERED, albumCoverLEFT;
@@ -50,7 +52,7 @@ void setup() {
   String pathwaySoundEffects = "../SoundFile/SoundEffect/"; //Relative Path
   //println ( pathwaySoundEffects+quitButtonSound+extension );
   String path = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
-  String bachgroundFileName = "backgroundimage/"; 
+  String backgroundFileName = "backgroundimage/"; 
  //println ( path );
   soundEffects1 = minim.loadFile( path );
   //playList1 = minim.loadFile( path );
@@ -67,14 +69,16 @@ void setup() {
   //
   //Variable Population
   //Images
-  String space = "space-7978460_1280";
+  String mountains = "ukraine-wonderful-carpathian-mountains-amazing-mountain-landscape-with-colorful-vivid-sunset-cloudy-sky-natural-outdoor-travel-background-beauty-world_571754-6986";
+  String obiWan = "Obi-wan-star-wars-jedi-23864621-800-600";
   String extensionJPG = ".jpg";
   String pathway = "../../Images/";
+  String landscape_Square = "Landscape & Square Images/";
   String portrait = "Portrait/";
-  String backgroundFileName = "Background Image/";
-  pathLightBackgroundImage = pathway + backgroundFileName + extensionJPG;
+  String name of the full= "Backgroundimage/";
+  pathLightBackgroundImage = pathway + backgroundFileName;
   pathDarkBackgroundImage = pathway + portrait + darthvader + extensionJPG;
-  String albumCoverImagePath = pathway + space + extensionJPG;
+  String albumCoverImagePath = pathway + landscape_Square + obiWan + extensionJPG;
   albumCoverImage = loadImage( albumCoverImagePath );
   //
   //Image Aspect Ratio Calculations

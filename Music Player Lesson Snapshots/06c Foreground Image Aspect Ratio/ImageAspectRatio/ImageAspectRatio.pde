@@ -1,12 +1,12 @@
 //Global Variables
 int appWidth, appHeight;
-float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight;
+float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight, albumCoverWidthAdjusted, albumCoverHeightAdjusted;
 PImage albumCoverImage;
 //
 void setup() {
   //Display
-  //size(600, 400); //width, height //400, 500
-  fullScreen(); //displayWidth, displayHeight
+  size(600, 400); //width, height //400, 500
+  //fullScreen(); //displayWidth, displayHeight
   appWidth = width; //displayWidth
   appHeight = height; //displayHeight
   //
@@ -16,15 +16,16 @@ void setup() {
   albumCoverWidth = appWidth*64/100;
   albumCoverHeight = appHeight*6/16; //Fraction Example
   //
-//variable population
-//String albumCoverImagePath; //Lesson Note: Building Global Var From local Var, System Resources
+  //Variable Population
+  //NOTE: once image loaded by STRINGS, only image variable as Global Variable Required
+  //NOTE: Computer knows what the folder names are and can be programmed automatically (beyond scope of course)
 String EdSmith = "2.-Ed-Smith-1800x1200";
 String extensionJPG = ".jpg";
 String pathway = "../../../images/";
 String albumCoverImagePath = pathway + EdSmith + extensionJPG;
 albumCoverImage = loadImage( albumCoverImagePath );
 //
- //Image Aspect Ratio Calculations
+  //Image Aspect Ratio Calculations
   //NOTE: IF-Else & WHILE to Adjust Aspect Ratio Dimensions
   //Forms a Procedure for Aspect Ratios of all Images ( copy and paste in setup() )
   float smallerAlbumCoverDimension = ( albumCoverWidth < albumCoverHeight ) ? albumCoverWidth : albumCoverHeight ;
@@ -42,22 +43,13 @@ albumCoverImage = loadImage( albumCoverImagePath );
   albumCoverWidthAdjusted = largerAlbumCoverDimension;
   albumCoverHeightAdjusted = smallerAlbumCoverDimension;
   //
-  /*Image can be centered, left justified, or right justified on the larger dimension
-   LEFT: X-value of image same as rect()
-   CENTERED: X-value of image = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2;
-   RIGHT: X-value of image = albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
-   */
-  albumCoverRIGHT = albumCoverX;
-  albumCoverCENTERED = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2;
-  albumCoverLEFT =albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
-  //
   //DIVs
   rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
+  //
 } //End setup
 //
 void draw() {
-  //change X-Value to CENTERED, RIGHT, or LEFT
-  image( albumCoverImage, albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight );
+  image( albumCoverImage, albumCoverX, albumCoverY, albumCoverWidthAdjusted, albumCoverHeightAdjusted );
 } //End draw
 //
 void mousePressed() {

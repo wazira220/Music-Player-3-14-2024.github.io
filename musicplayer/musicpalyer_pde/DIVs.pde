@@ -41,4 +41,9 @@ void drawRects() { //Layout DIVs
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
   //
 } //End Draw Rectangles
+//
+ //DIV
+  rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
+} //End setup
+//
 //End DIVs SubProgram

@@ -16,12 +16,28 @@ import ddf.minim.ugens.*;
 Minim minim; //creates object to access all functions
 AudioPlayer playList1; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
 AudioPlayer soundEffects1; //"Play List" for Sound Effects
+Minim minim; //creates object to access all functions
+int numberSoundEffects = 4; //DEV Verify, OS able to count (CS20 Solution)
+int numberMusicSongs = 8; //DEV Verify, OS able to count (CS20 Solution)
+AudioPlayer[] playList = new AudioPlayer[ numberMusicSongs ]; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
+AudioPlayer[] soundEffects = new AudioPlayer[ numberSoundEffects ]; //"Play List" for Sound Effects
+int currentSong = 0; //JAVA starts counting at 0, not for all languages
+int appWidth, appHeight, brightness=255;
+float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
+PImage backgroundImage;
+Boolean lightMode=true, starWars=false, nightMode=false;
 //
 int appWidth, appHeight;
 //
 int size;
 PFont generalFont;
 String quit="QUIT";
+//
+Boolean looping=false;
+//Protects .rewind in draw() from being inappropriately accessed between .play(), .loop(1), & .loop()
+color white=255, yellow=#FFFF00, black=0, purple=#FF00FF; //Hexidecimal, see Tools / Colour Selector
+Boolean dayMode=false; //App starts in Night Mode, set to day in setup()
+Boolean lightMode=false; //Dark mode starts App, null possible if USER Preferences made
 //
 color white=255, yellow=#FFFF00, black=0, purple=#FF00FF; //Hexidecimal, see Tools / Colour Selector
 Boolean dayMode=false; //App starts in Night Mode, set to day in setup()
@@ -31,8 +47,8 @@ color backgroundColour, darkBackground=0, whiteBackground=255; //Gray Scale, not
 color foregroundColour;
 //
 String pathDarkBackgroundImage, pathLightBackgroundImage;
-PImage space, sunrise, ukraine
-PImage backgroundImage;
+PImage space,
+PImage backgroundImageName;
 PImage albumCoverImage;
 float albumCoverRIGHT, albumCoverCENTERED, albumCoverLEFT;
 //
@@ -46,14 +62,20 @@ void setup() {
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Bru, turn your phun";
   println(displayInstructions);
   //
-  minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
+minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
+  String pathwaySoundEffects = "../../../SoundFileSoundEffect/";
+  String pathwayMusic = "../../../SoundFile/MusicDownload/"; //Relative Path
+  String quitButtonSound = "The_Simplest_sting";
+  String groove = "groove";
   String extension = ".mp3";
-  String quitButtonSound = "The_Simplest_Sting";
-  String pathwaySoundEffects = "../SoundFile/SoundEffect/"; //Relative Path
-  //println ( pathwaySoundEffects+quitButtonSound+extension );
-  String path = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
-  String backgroundFileName = "backgroundimage/"; 
- //println ( path );
+    //println ( pathwaySoundEffects+quitButtonSound+extension );
+  //println ( "Relative Pathway:", pathwayMusic+groove+extension );
+  String pathQuitButtonSound = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
+  String pathGrooveSong = sketchPath( pathwayMusic + groove + extension ); //Absolute Path
+  //println ( "Absolute Pathway:", pathGrooveSong ); //pathQuitButtonSound
+  soundEffects[0] = minim.loadFile( pathQuitButtonSound );
+  playList[0] =  minim.loadFile( pathGrooveSong ); // "" is compiler error
+  //
   soundEffects1 = minim.loadFile( path );
   //playList1 = minim.loadFile( path );
   //
@@ -69,18 +91,17 @@ void setup() {
   //
   //Variable Population
   //Images
-  String mountains = "ukraine-wonderful-carpathian-mountains-amazing-mountain-landscape-with-colorful-vivid-sunset-cloudy-sky-natural-outdoor-travel-background-beauty-world_571754-6986";
-  String obiWan = "Obi-wan-star-wars-jedi-23864621-800-600";
-  String extensionJPG = ".jpg";
-  String pathway = "../../Images/";
-  String landscape_Square = "Landscape & Square Images/";
-  String portrait = "Portrait/";
-  String name of the full= "Backgroundimage/";
-  pathLightBackgroundImage = pathway + backgroundFileName;
-  pathDarkBackgroundImage = pathway + portrait + darthvader + extensionJPG;
-  String albumCoverImagePath = pathway + landscape_Square + obiWan + extensionJPG;
-  albumCoverImage = loadImage( albumCoverImagePath );
+  String EdSmith = "2.-Ed-Smith-1800x1200";
+String extensionJPG = ".jpg";
+String pathway = "../../../images/";
+String albumCoverImagePath = pathway + EdSmith + extensionJPG;
+albumCoverImage = loadImage( albumCoverImagePath );
   //
+  String backgroundImageName = "space-7978460_1280";
+String extension = ".jpg";
+String pathway = "../../../../Images/backgroundimage"
+//Boolean darkMode=false; //See keyPressed for NOTE
+//
   //Image Aspect Ratio Calculations
   //NOTE: IF-Else & WHILE to Adjust Aspect Ratio Dimensions
   //Forms a Procedure for Aspect Ratios of all Images ( copy and paste in setup() )
@@ -198,5 +219,15 @@ void mousePressed() { //Listener
   }
 } //End mousePressed
 //
-
-// End MAIN Program
+void keyPressed() { //Key Board Short Cuts for Mouse Pressing Prototyping
+  if ( key=='W' || key=='w' ) { //Day Mode, White Light Containing Blue Colour
+    if (  lightMode == false ) {
+      lightMode = true;  //Light Mode ON
+    } else {
+      lightMode = false; //Dark Mode ON, no darkMode Boolean required
+    }
+  } //End Day Mode
+  //if () {} //End Night Mode
+} //End keyPressed
+//
+//End MAIN Program

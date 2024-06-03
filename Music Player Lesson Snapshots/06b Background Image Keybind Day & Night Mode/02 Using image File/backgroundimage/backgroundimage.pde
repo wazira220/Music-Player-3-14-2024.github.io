@@ -1,29 +1,15 @@
 //Global Variables
 int appWidth, appHeight, brightness=255;
 float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
-PImage backgroundImage;
-Boolean lightMode=true, starWars=false, nightMode=false;
-int appWidth, appHeight, brightness=255;
-float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
-PImage backgroundImage;
-Boolean lightMode=true, dayMode=false, nightMode=false;
-//Boolean darkMode=false; //See keyPressed for NOTE
-//
-void setup() {
-  //Display
-  fullScreen();
-  appWidth = displayWidth;
-  appHeight = displayHeight;
-  //Population
-  backgroundImageX = appWidth*0;
-  backgroundImageY = appHeight*0;
-  backgroundImageWidth = appWidth-1;
-  backgroundImageHeight = appHeight-1;
-  //
+PImage backgroundimage,image
+//boolean lightMode=true, starWars=false, nightMode=false;
+String path
 //Image Files & Folder Names
-String backgroundImageName = "space-7978460_1280";
+String space = "space-7978460_1280";
+String unsplash = "unsplash-image-Qi8CvonsYnM";
+String backgroundImageName = " space";
 String extension = ".jpg";
-String pathway = "../../../../Images/backgroundimage"
+String pathway = "../../../images/backgroundimage"; 
 //Boolean darkMode=false; //See keyPressed for NOTE
 //
 void setup() {
@@ -39,10 +25,10 @@ void setup() {
   backgroundImageHeight = appHeight-1;
   //
   //Control with IFs
-  backgroundImageName = bike;
-  path = pathway + landscape_Square + backgroundImageName + extension;
-  backgroundImage = loadImage( path );
-   //
+  backgroundImageName = space;
+  path = pathway + backgroundimage + extension;
+  backgroundimage = loadimage( path );
+  //
   //DIV
   rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
 } //End setup
@@ -51,9 +37,14 @@ void draw() {
   background(255); //Day Mode, Light Mode ON / OFF, WHITE allowed
   //NOTE: lightMode ON = max saturation
   if ( lightMode == true ) {
-    brightness = 255;
-  } else {
-    brightness = 64; //USER Preference: lowest brightness
+    backgroundImageName = space; //obiWan
+    path = pathway + backgroundImage  + extension;
+    backgroundImage = loadImage( path );
+  } 
+  else {
+    backgroundImageName = unsplash ;
+    path = pathway + backgroundImage  + extension;
+    backgroundImage = loadImage( path );
   }
   tint(255, brightness); //255 is max saturation, max colour
   image( backgroundImage, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
